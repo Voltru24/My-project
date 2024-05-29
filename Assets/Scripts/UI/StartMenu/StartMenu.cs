@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
 
-public class Menu : MonoBehaviour
+public class StartMenu : MonoBehaviour
 {
     private Animator _animator;
 

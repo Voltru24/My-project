@@ -5,6 +5,7 @@ public class EventActivator : MonoBehaviour
 {
     [SerializeField] private ObjectActivation _objectActivation;
 
+    [SerializeField] private bool _OneActivation;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -16,7 +17,10 @@ public class EventActivator : MonoBehaviour
             {
                 _objectActivation.Activation();
 
-                Destroy(gameObject);
+                if (_OneActivation)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
