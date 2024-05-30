@@ -18,13 +18,21 @@ public class WorkbenchMenu : ObjectActivation
     [SerializeField] private Warehouse _warehouse;
     [SerializeField] private Balance _balance;
 
+    [SerializeField] private SpriteRenderer _carImage;
+
+    private int _countCar;
+    private int _minCountCar = 2;
+    private int _maxCountCar = 6;
+
     private Order _order;
 
     private Image _image;
 
     private void Start()
     {
-      _image = GetComponent<Image>();
+       _image = GetComponent<Image>();
+
+        ResetCarCount();
     }
 
     public override void Activation()
@@ -46,14 +54,35 @@ public class WorkbenchMenu : ObjectActivation
 
     public void ReceiveOrder()
     {
+        if (_countCar <= 0)
+        {
+            return;
+        }
+
+
         if (_order == null)
         {
+            _countCar--;
+
             _order = new Order();
+
+            _carImage.enabled = true;
 
             ShowOrder();
         }
     }
 
+    public bool GetThereIsOrder()
+    {
+        if (_order != null)
+        {
+            return true;
+        }
+        else 
+        { 
+            return false; 
+        }
+    }
 
     public void PassOrder()
     {
@@ -65,9 +94,33 @@ public class WorkbenchMenu : ObjectActivation
 
                 _order = null;
 
+                _carImage.enabled = false;
+
                 ShowOrder();
             }
         }
+    }
+
+    public bool GetIsOrden()
+    {
+        if (_order != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public TypeDetail GetTypeDetailOrden()
+    {
+        return _order.Detail;
+    }
+
+    public void MadeOrden()
+    {
+        _order.Made();
     }
 
     public void RefuseOrder() 
@@ -75,6 +128,11 @@ public class WorkbenchMenu : ObjectActivation
         _order = null;
 
         ShowOrder();
+    }
+
+    public void ResetCarCount()
+    {
+        _countCar = Random.Range(_minCountCar, _maxCountCar);
     }
 
     private void ShowDetails()
