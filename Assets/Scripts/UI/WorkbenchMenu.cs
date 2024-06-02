@@ -59,7 +59,6 @@ public class WorkbenchMenu : ObjectActivation
             return;
         }
 
-
         if (_order == null)
         {
             _countCar--;
@@ -126,6 +125,8 @@ public class WorkbenchMenu : ObjectActivation
     public void RefuseOrder() 
     {
         _order = null;
+
+        _carImage.enabled = false;
 
         ShowOrder();
     }
