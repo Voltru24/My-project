@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Bed : ObjectActivation
 {
-    //Говно код - нужно переписать
-
     private int _dayCount = 1;
 
     [SerializeField] private TMP_Text _textMeshPro;

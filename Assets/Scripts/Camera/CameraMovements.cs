@@ -6,6 +6,11 @@ public class CameraMovements : MonoBehaviour
     private Coroutine _workCoroutine;
     [SerializeField] private float _speed;
 
+    private void Start()
+    {
+        Screen.SetResolution(1450, 720, false);
+    }
+
     public void MovePosition(Vector3 position)
     {
         if(_workCoroutine != null)
